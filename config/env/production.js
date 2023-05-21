@@ -48,7 +48,7 @@ module.exports = {
     ***************************************************************************/
     default: {
       adapter: 'sails-mysql',
-      url: '',
+      url: `${process.env.DATABASE_URL}`,
       //--------------------------------------------------------------------------
       //  /\   To avoid checking it in to version control, you might opt to set
       //  ||   sensitive credentials like `url` using an environment variable.
@@ -91,7 +91,16 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     migrate: 'safe',
-
+    schema: true,
+    attributes: false,
+    dataEncryptionKeys: {
+      default: `${process.env.MODEL_DEK_DEFAULT}`
+    },
+    cascadeOnDestroy: false,
+    fetchRecordsOnUpdate: true,
+    fetchRecordsOnDestroy: true,
+    fetchRecordsOnCreate: true,
+    fetchRecordsOnCreateEach: true,
     /***************************************************************************
     *                                                                          *
     * If, in production, this app has access to physical-layer CASCADE         *
@@ -148,9 +157,11 @@ module.exports = {
     *                                                                          *
     ***************************************************************************/
     cors: {
-      allowOrigins: [
-        '*'
-      ]
+      allRoutes: true,
+      allowOrigins: '*',
+      allowCredentials: false,
+      allowRequestMethods: 'GET, POST, PUT, DELETE, OPTIONS, HEAD',
+      allowRequestHeaders: 'content-type',
     },
 
   },
@@ -265,11 +276,11 @@ module.exports = {
     * > Be sure to use the right protocol!  ("http://" vs. "https://")         *
     *                                                                          *
     ***************************************************************************/
-    onlyAllowOrigins: [
-      '*',
+    // onlyAllowOrigins: [
+      // '*',
       // 'https://example.com',
       // 'https://staging.example.com',
-    ],
+    // ],
 
 
     /***************************************************************************
@@ -341,7 +352,7 @@ module.exports = {
     * (https://sailsjs.com/config/http)                                        *
     *                                                                          *
     ***************************************************************************/
-    trustProxy: true,
+    // trustProxy: true,
 
   },
 
@@ -390,7 +401,7 @@ module.exports = {
   *                                                                         *
   ***************************************************************************/
   custom: {
-    baseUrl: 'http://localhost:1337',
+    baseUrl: `${process.env.BASE_URL}`,
 
     // sendgridSecret: 'SG.fake.3e0Bn0qSQVnwb1E4qNPz9JZP5vLZYqjh7sn8S93oSHU',
     // stripeSecret: 'sk_prod__fake_Nfgh82401348jaDa3lkZ0d9Hm',
