@@ -49,8 +49,7 @@ module.exports.datastores = {
     *                                                                          *
     ***************************************************************************/
     adapter: require('sails-mysql'),
-    // url: 'mysql://root:password@localhost:3306/shopiecedev',
-    url: 'mysql://shopiecedev:devshopiece@shopiece-db.c92d582euywt.eu-north-1.rds.amazonaws.com:3306/shopiece_dev',
+    url: `${process.env.DATABASE_URL}`,
     ssl: false
 
   },

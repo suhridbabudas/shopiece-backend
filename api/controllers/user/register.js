@@ -62,7 +62,7 @@ module.exports = {
         Email: newEmailAddress,
         EmailProofToken: token,
         EmailProofTokenExpiresAt:
-          Date.now() + sails.config.custom.emailProofTokenTTL,
+          Date.now() + sails.config.custom.emailProofTokenTTL || parseInt(process.env.EMAIL_PROOF_TOKEN_TTL),
         Phone: inputs.Phone,
         Password: inputs.Password,
         PasswordResetToken: null,
@@ -70,7 +70,7 @@ module.exports = {
         AvatarUrl: inputs.AvatarUrl ? inputs.AvatarUrl : null,
       }).fetch();
       if (newUser) {
-        const confirmLink = `${sails.config.custom.baseUrl}/user/confirm?token=${token}`;
+        const confirmLink = `${sails.config.custom.baseUrl || process.env.BASE_URL}/user/confirm?token=${token}`;
         const email = {
           to: newUser.Email,
           subject: 'Confirm Your account',

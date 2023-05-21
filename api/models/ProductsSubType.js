@@ -16,7 +16,7 @@ module.exports = {
       columnType: 'integer',
       autoIncrement: true,
     },
-    TypeCode: { type: "string", unique: true, columnType: 'varchar(15)' },
+    TypeCode: { type: "string", columnType: 'varchar(15)' },
     SubTypeCode: { type: "string", unique: true, columnType: 'varchar(15)' },
     SubTypeCodeName: { type: "string", columnType: 'varchar(100)' },
     CreatedAt: { type: "ref", columnType: "date", autoCreatedAt: true },

@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 module.exports = async function (req, res, proceed) {
     try {
         const token = await req.header("Authorization").replace("Bearer ", "");
-        const decodedToken = await jwt.verify(token, sails.config.jwtSecret || process.env.JWT_SECRET);
+        const decodedToken = await jwt.verify(token, sails.config.jwtSecret || process.env.JWT_SECRET_KEY);
         if (Date.now() >= decodedToken.exp * 1000) {
             res.status(401).json({
                 error: `Not Authorised.`,
