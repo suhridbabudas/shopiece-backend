@@ -106,6 +106,8 @@ module.exports = {
   },
   beforeCreate: async function (values, proceed) {
     // Hash password
+    console.log(values.UserID.indexOf('6767'));
+    values.UserQualifier = values.UserID.indexOf('CUST') !== -1 ? 1 : 0;
     const hashedPassword = await sails.helpers.passwords.hashPassword(
       values.Password
     );

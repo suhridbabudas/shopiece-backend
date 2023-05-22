@@ -53,24 +53,25 @@ module.exports = {
       const userID = makeid(inputs.UserQualifer);
       const newEmailAddress = inputs.Email.toLowerCase();
       const token = await sails.helpers.strings.random('url-friendly');
-      let newUser = await Users.create({
+      const newUserObj = {
         UserID: userID,
-        UserQualifer: inputs.UserQualifer,
+        UserQualifer: inputs.UserQualifer.toString(),
         FirstName: inputs.FirstName,
         MiddleName: inputs.MiddleName,
         LastName: inputs.LastName,
         Email: newEmailAddress,
         EmailProofToken: token,
         EmailProofTokenExpiresAt:
-          Date.now() + sails.config.custom.emailProofTokenTTL || parseInt(process.env.EMAIL_PROOF_TOKEN_TTL),
+          Date.now() + parseInt(process.env.EMAIL_PROOF_TOKEN_TTL),
         Phone: inputs.Phone,
         Password: inputs.Password,
         PasswordResetToken: null,
         PasswordResetTokenExpiresAt: null,
         AvatarUrl: inputs.AvatarUrl ? inputs.AvatarUrl : null,
-      }).fetch();
+      }
+      let newUser = await Users.create(newUserObj).fetch();
       if (newUser) {
-        const confirmLink = `${sails.config.custom.baseUrl || process.env.BASE_URL}/user/confirm?token=${token}`;
+        const confirmLink = `${process.env.BASE_URL}/user/confirm?token=${token}`;
         const email = {
           to: newUser.Email,
           subject: 'Confirm Your account',

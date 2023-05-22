@@ -37,9 +37,9 @@ module.exports = {
     await Users.update({ id: user.id }).set({
       PasswordResetToken: token,
       PasswordResetTokenExpiresAt:
-        Date.now() + sails.config.custom.passwordResetTokenTTL || parseInt(process.env.PASSWORD_RESET_TOKEN_TTL),
+        Date.now() + parseInt(process.env.PASSWORD_RESET_TOKEN_TTL),
     });
-    const recoveryLink = `${sails.config.custom.baseUrl || process.env.BASE_URL}/user/resetpassword?token=${token}`;
+    const recoveryLink = `${process.env.BASE_URL}/user/resetpassword?token=${token}`;
     const email = {
       to: user.Email,
       subject: "Reset Password",

@@ -19,8 +19,8 @@ module.exports = {
       subject: inputs.subject,
       iss: "Shopiece New App"
     };
-    const secret = sails.config.jwtSecret || process.env.JWT_SECRET_KEY;
-    const token = jwt.sign(payload, secret, { expiresIn: sails.config.jwtTokenExp || parseInt(process.env.JWT_TOKEN_EXP)});
+    const secret = process.env.JWT_SECRET_KEY;
+    const token = jwt.sign(payload, secret, { expiresIn: parseInt(process.env.JWT_TOKEN_EXP)});
     return exits.success({
       token
     })
