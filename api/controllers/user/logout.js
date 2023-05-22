@@ -26,6 +26,7 @@ module.exports = {
 
 
   fn: async function (inputs, exits) {
+    console.log("API Call to: user/logout");
     try {
       await Users.updateOne({ id: inputs.id }).set({
         UserJSONToken: null

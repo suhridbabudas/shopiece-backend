@@ -30,6 +30,7 @@ module.exports = {
 
 
   fn: async function (inputs, exits) {
+    console.log("API Call to: user/resetpassword");
     if (!inputs.token) {
       return exits.invalidToken({
         error: "No token found.",

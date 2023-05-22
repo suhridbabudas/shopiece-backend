@@ -34,6 +34,7 @@ module.exports = {
     }
   },
   fn: async function (inputs, exits) {
+    console.log("API Call to: user/login");
     try {
       const user = await Users.findOne({ Email: inputs.Email });
       if (!user) {

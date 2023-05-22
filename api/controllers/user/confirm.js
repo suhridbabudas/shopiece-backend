@@ -30,6 +30,7 @@ module.exports = {
   },
 
   fn: async function (inputs, exits) {
+    console.log("API Call to: user/confirm");
     try {
       if (!inputs.token) {
         return exits.noTokenPresent({

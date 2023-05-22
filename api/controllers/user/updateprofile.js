@@ -53,6 +53,7 @@ module.exports = {
 
 
   fn: async function (inputs, exits) {
+    console.log("API Call to: user/updateprofile");
     const allowToUpdate = ["FirstName", "MiddleName", "LastName", "Phone", "Email", "Password", "AvatarUrl"];
     let updates = Object.keys(inputs);
     updates.splice(updates.indexOf('id'),1);

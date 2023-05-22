@@ -29,8 +29,8 @@ module.exports = {
 
 
   fn: async function (inputs, exits) {
+    console.log("API Call to: user/getuserprofile");
     try{
-      // const user = await Users.findOne({id: inputs.id});
       const user = this.req.user;
       if(!user){
         return exits.notFound({

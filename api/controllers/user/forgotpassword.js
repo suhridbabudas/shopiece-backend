@@ -26,6 +26,7 @@ module.exports = {
 
 
   fn: async function (inputs, exits) {
+    console.log("API Call to: user/forgotpassword");
     var user = await Users.findOne({ Email: inputs.Email });
     if (!user) {
       return exits.error({

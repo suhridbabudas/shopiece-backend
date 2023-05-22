@@ -49,6 +49,7 @@ module.exports = {
     },
   },
   fn: async function (inputs, exits) {
+    console.log("API Call to: user/register");
     try {
       const userID = makeid(inputs.UserQualifer);
       const newEmailAddress = inputs.Email.toLowerCase();
