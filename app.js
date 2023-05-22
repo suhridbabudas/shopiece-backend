@@ -53,4 +53,11 @@ try {
 
 
 // Start server
-sails.lift(rc('sails'));
+console.log("sails initialised...")
+sails.lift(rc('sails'), err => {
+  if(err) {
+    console.log("Error occured during sails lifting.");
+    return;
+  }
+  console.log("sails successfully lifted.");
+});
