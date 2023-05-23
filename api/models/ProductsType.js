@@ -18,6 +18,7 @@ module.exports = {
     },
     TypeCode: { type: "string", unique: true, columnType: 'varchar(10)' },
     TypeName: { type: "string", columnType: 'varchar(100)' },
+    URL:{ type: "string", columnType: 'varchar(255)' },
     CreatedAt: { type: "ref", columnType: "date", autoCreatedAt: true },
     UpdatedAt: { type: "ref", columnType: "date", autoUpdatedAt: true },
   },
