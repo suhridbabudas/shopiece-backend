@@ -10,9 +10,9 @@ module.exports = {
   },
   fn: async function (exits) {
     console.log("API Call to: products/getproducts");
-    const where = this.req.query ? JSON.parse(this.req.query.where) : {};
-    const limit = this.req.query ? parseInt(this.req.query.limit) : 30;
-    const skip = this.req.query ? parseInt(this.req.query.skip) : 0;
+    const where = this.req.query && this.req.query.where ? JSON.parse(this.req.query.where) : {};
+    const limit = this.req.query && this.req.query.limit ? parseInt(this.req.query.limit) : 30;
+    const skip = this.req.query && this.req.query.skip ? parseInt(this.req.query.skip) : 0;
     try {
       const data = await Products.find({ where, limit, skip})
       return this.res.status(200).json([...data])
