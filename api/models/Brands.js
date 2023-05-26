@@ -1,26 +1,25 @@
 /**
- * ProductsSubType.js
+ * Brands.js
  *
  * @description :: A model definition represents a database table/collection.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
  */
 
 module.exports = {
-  tableName: "ProductsSubType",
+  tableName: "Brands",
   primaryKey: "id",
   attributes: {
     id: {
       type: "number",
-      columnName: "ProductsSubTypeKey",
+      columnName: "BrandKey",
       unique: true,
       columnType: 'integer',
       autoIncrement: true,
     },
-    TypeCode: { type: "string", columnType: 'varchar(15)' },
-    SubTypeCode: { type: "string", unique: true, columnType: 'varchar(15)' },
-    SubTypeCodeName: { type: "string", columnType: 'varchar(100)' },
-    URL:{ type: "string", columnType: 'varchar(255)' },
+    BrandCode: { type: "string", unique: true, columnType: 'varchar(10)' },
+    BrandName: { type: "string", columnType: 'varchar(30)' },
     CreatedAt: { type: "ref", columnType: "date", autoCreatedAt: true },
     UpdatedAt: { type: "ref", columnType: "date", autoUpdatedAt: true },
   },
 };
+

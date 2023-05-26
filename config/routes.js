@@ -17,5 +17,8 @@ module.exports.routes = {
     'POST /user/resetpassword': 'user/resetpassword',
     'PUT /user/logout': 'user/logout',
     'PUT /user/updateprofile': 'user/updateprofile',
-    'GET /user/getuserprofile': 'user/getuserprofile'
+    'GET /user/getuserprofile': 'user/getuserprofile',
+    'GET /products/getproducts': 'products/getproducts',
+    'GET /products/getproductsdetails/:id': 'products/getproductsdetails',
+
 };
