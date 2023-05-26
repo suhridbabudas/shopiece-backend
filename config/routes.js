@@ -18,7 +18,7 @@ module.exports.routes = {
     'PUT /user/logout': 'user/logout',
     'PUT /user/updateprofile': 'user/updateprofile',
     'GET /user/getuserprofile': 'user/getuserprofile',
-    'GET /products/getallproducts': '/products/getallproducts',
-    'GET /products/gettrendingproducts': '/products/gettrendingproducts',
+    'GET /products/getproducts': 'products/getproducts',
+    'GET /products/getproductsdetails/:id': 'products/getproductsdetails',
 
 };
