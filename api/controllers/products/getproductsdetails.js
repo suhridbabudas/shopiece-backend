@@ -12,6 +12,7 @@ module.exports = {
     }
   },
   fn: async function (exits) {
+    console.log("API Call to: products/getproductsdetails/:id");
     const productID = this.req.params.id;
     try {
       const product = await Products.findOne({ id: productID });
@@ -44,6 +45,7 @@ module.exports = {
       product['Brands'] = brand;
       return this.res.status(200).json(product);
     } catch (error) {
+      console.log("API Call to: products/getproductsdetails/:id - catch block");
       return exits.error({
         status: 400,
         message: error.message
