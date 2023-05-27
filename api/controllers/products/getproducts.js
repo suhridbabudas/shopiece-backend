@@ -11,15 +11,26 @@ module.exports = {
   fn: async function (exits) {
     console.log("API Call to: products/getproducts");
     const where = this.req.query && this.req.query.where ? JSON.parse(this.req.query.where) : {};
-    const limit = this.req.query && this.req.query.limit ? parseInt(this.req.query.limit) : 30;
+    const limit = this.req.query && this.req.query.limit ? parseInt(this.req.query.limit) : 20;
     const skip = this.req.query && this.req.query.skip ? parseInt(this.req.query.skip) : 0;
     try {
-      const data = await Products.find({ where, limit, skip})
-      return this.res.status(200).json([...data])
-    } catch (error) {
-      return exits.error({
-        error: error.message
+      let data = await Products.find({ where, limit, skip })
+      if (!data) {
+        return this.res.status(200).json([])
+      }
+      const brand = await Brands.find();
+      let productList =[];
+      data.forEach(product => {
+        brand.forEach(brand => {
+          if(brand.id === product.BrandKey){
+            product['Brand'] = brand;
+            productList.push(product);
+          }
+        })
       })
+      return this.res.status(200).json([...productList])
+    } catch (error) {
+      return this.res.status(500).json({error: error.message})
     }
-  }
+  },
 };
