@@ -10,7 +10,7 @@ module.exports = {
   },
   fn: async function (exits) {
     console.log("API Call to: products/getproducts");
-    const where = this.req.query && this.req.query.where ? JSON.parse(this.req.query.where) : {};
+    const where = this.req.query && this.req.query.where ? JSON.parse(this.req.query.where) : null;
     const limit = this.req.query && this.req.query.limit ? parseInt(this.req.query.limit) : null;
     const skip = this.req.query && this.req.query.skip ? parseInt(this.req.query.skip) : null;
     let query = {};
